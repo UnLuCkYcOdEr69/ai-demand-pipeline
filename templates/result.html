@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pipeline Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+    <style>
+        .kpi-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .kpi-box {
+            flex: 1;
+            min-width: 120px;
+            background: rgba(255,255,255,0.08);
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .kpi-box h4 {
+            margin: 5px 0;
+            color: #00ffd5;
+        }
+        h3 {
+            color: #00ffd5;
+            text-shadow: 0 0 8px rgba(0,255,213,0.6);
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>AI Demand Pipeline Result</h1>
+
+    <p style="text-align:center; color:#00ffd5;">
+        🚀 AI-Driven Demand Intelligence & Automation System
+    </p>
+
+    <div class="result-box">
+
+        <p><strong>Problem:</strong> {{ problem }}</p>
+
+        <hr>
+
+        <p><strong>Domain:</strong> {{ domain }}</p>
+        <p><strong>Priority:</strong> {{ priority }}</p>
+        <p><strong>Complexity:</strong> {{ complexity }}</p>
+
+        <hr>
+
+        <p><strong>Decision:</strong> {{ route }}</p>
+
+        <p><strong>Explanation:</strong></p>
+        <ul>
+            {% for line in reason.split('|') %}
+                <li>👉 {{ line }}</li>
+            {% endfor %}
+        </ul>
+
+        <hr>
+
+        <p><strong>Manager:</strong> {{ manager }}</p>
+
+        <p><strong>Team:</strong></p>
+        <ul>
+            {% for member in team %}
+                <li>✔ {{ member }}</li>
+            {% endfor %}
+        </ul>
+
+        <hr>
+
+        <p><strong>Reuse:</strong> {{ reuse }}</p>
+
+        <hr>
+
+        <p><strong>Timeline:</strong> {{ timeline }}</p>
+        <p><strong>Risk:</strong> {{ risk }}</p>
+
+        <!-- KPIs -->
+        <div class="kpi-container">
+            <div class="kpi-box">
+                <h4>{{ confidence }}</h4>
+                <p>Confidence</p>
+            </div>
+            <div class="kpi-box">
+                <h4>{{ risk_score }}</h4>
+                <p>Risk Score</p>
+            </div>
+            <div class="kpi-box">
+                <h4>{{ automation.time_saved }}</h4>
+                <p>Time Saved</p>
+            </div>
+            <div class="kpi-box">
+                <h4>{{ (success_rate * 100)|round(0) }}%</h4>
+                <p>Success Rate</p>
+            </div>
+        </div>
+
+        <!-- AI Explanation -->
+        <hr>
+        <h3>🧠 AI Analysis</h3>
+        <p>{{ ai_explanation }}</p>
+
+    </div>
+
+    <form action="/">
+        <button type="submit">⬅ Back</button>
+    </form>
+</div>
+
+</body>
+</html>

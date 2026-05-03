@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Demand Pipeline</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>AI Demand Pipeline System</h1>
+    <h2>Enter Problem Statement</h2>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <form action="/process" method="post">
+        <textarea name="problem" placeholder="Describe your AI requirement here..." required></textarea>
+        <button type="submit">Submit Demand</button>
+    </form>
+</div>
+
+</body>
+</html>
